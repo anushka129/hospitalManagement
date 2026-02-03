@@ -2,6 +2,7 @@ package com.example.hospitalManagement;
 
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.repository.PatientRepository;
+import com.example.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +15,23 @@ public class PatientTests {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private PatientService patientService;
+
     @Test
     public void testPatientRepository(){
 
         List<Patient> patientList = patientRepository.findAll();
         System.out.println(patientList);
+
+        Patient p1 = new Patient();
+        patientRepository.save(p1);
+    }
+
+    @Test
+    public void testTransactionMethod(){
+        Patient patient = patientService.getPatientById(1L);
+
+        System.out.println(patient);
     }
 }
