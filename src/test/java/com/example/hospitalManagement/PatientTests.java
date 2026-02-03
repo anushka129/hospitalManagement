@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
@@ -19,17 +20,24 @@ public class PatientTests {
     @Autowired
     private PatientService patientService;
 
-    @Test
-    public void testPatientRepository(){
-
-        Patient p1 = new Patient();
-        patientRepository.save(p1);
-    }
+//    @Test
+//    public void testPatientRepository(){
+//
+//        Patient p1 = new Patient();
+//        patientRepository.save(p1);
+//    }
 
     @Test
     public void testTransactionMethod(){
-        Patient patient = patientService.getPatientById(1L);
+//        Patient patient = patientRepository.findByName("Diya Patel");
 
-        System.out.println(patient);
+//        List<Patient> patientList = patientRepository.findByBirthDateOrEmail(LocalDate.of(1988, 3, 15), "diya.patel@example.com");
+
+        List<Patient> patientList = patientRepository.findByNameContainingOrderByIdDesc("Di");
+
+        for (Patient patient: patientList){
+            System.out.println(patient);
+        }
+
     }
 }
