@@ -1,6 +1,7 @@
 package com.example.hospitalManagement;
 
 import com.example.hospitalManagement.entity.Patient;
+import com.example.hospitalManagement.entity.type.BloodGroupType;
 import com.example.hospitalManagement.repository.PatientRepository;
 import com.example.hospitalManagement.service.PatientService;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,11 +34,20 @@ public class PatientTests {
 
 //        List<Patient> patientList = patientRepository.findByBirthDateOrEmail(LocalDate.of(1988, 3, 15), "diya.patel@example.com");
 
-        List<Patient> patientList = patientRepository.findByNameContainingOrderByIdDesc("Di");
+//        List<Patient> patientList = patientRepository.findByByBornAfterDate(LocalDate.of(1993, 3, 14));
+
+        List<Patient> patientList = patientRepository.findAllPatients();
 
         for (Patient patient: patientList){
             System.out.println(patient);
         }
 
+        List<Object[]> bloodGroupList = patientRepository.countEachBloodGroupType();
+        for(Object[] objects: bloodGroupList){
+            System.out.println(objects[0] + " " + objects[1]);
+        }
+
+        int rowsUpdated = patientRepository.updateNameWithId("Arav", 1L);
+        System.out.println(rowsUpdated);
     }
 }
