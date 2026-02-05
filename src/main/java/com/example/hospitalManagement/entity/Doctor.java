@@ -36,6 +36,6 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors")
     private Set<Department> departments = new HashSet<>();
 
-//    @OneToMany(mappedBy = "doctor")
-//    private List<Appointment> appointments = new ArrayList<>();
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments = new ArrayList<>();
 }
