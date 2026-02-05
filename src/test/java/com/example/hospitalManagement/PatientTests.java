@@ -26,12 +26,13 @@ public class PatientTests {
     @Autowired
     private PatientService patientService;
 
-//    @Test
-//    public void testPatientRepository(){
-//
-//        Patient p1 = new Patient();
-//        patientRepository.save(p1);
-//    }
+    @Test
+    public void testPatientRepository(){
+
+        List<Patient> patientList = patientRepository.findAllPatientWithAppointment();
+        System.out.println(patientList);
+
+    }
 
     @Test
     public void testTransactionMethod(){
